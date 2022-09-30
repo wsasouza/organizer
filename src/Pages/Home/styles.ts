@@ -1,5 +1,58 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.main`
-  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: 10rem auto 0 auto;
+  max-width: 72rem;
+  padding: 6rem 3rem;
+  background: ${(props) => props.theme['gray-200']};
+  border-radius: 6px;
+  gap: 2rem;
+
+  @media (max-width: 940px) {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+`
+
+export const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+
+  h1 {
+    font-family: 'MuseoModerno', cursive;
+    font-size: 3rem;
+    color: ${(props) => props.theme['yellow-500']};
+    letter-spacing: 2px;
+    line-height: 1.3;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1rem;
+      height: 2rem;
+      margin-right: 8px;
+      border-radius: 4px;
+      background: ${(props) => props.theme['gray-800']};
+    }
+
+    &::after {
+      content: '✍🏻';
+      display: inline-block;
+      font-size: 4rem;
+      line-height: 0.5rem;
+      margin-left: 2px;
+    }
+  }
+
+  @media (max-width: 940px) {
+    h1 {
+      font-size: 2.6rem;
+    }
+  }
 `

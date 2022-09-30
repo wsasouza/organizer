@@ -6,6 +6,7 @@ export const HeaderContainer = styled.header<{ scroll: boolean }>`
   z-index: 2;
   transition: 0.5s;
   padding: 1.5rem 1rem;
+  background: ${(props) => props.theme['gray-200']};
 
   ${(props) => props.scroll && scrollStyle};
 
@@ -47,7 +48,7 @@ export const HeaderMenu = styled.div`
     justify-content: center;
     gap: 8px;
 
-    &:hover {
+    &:not(:active):hover {
       color: ${(props) => props.theme['gray-900']};
       background: ${(props) => props.theme['yellow-500']};
       font-weight: bold;
@@ -71,6 +72,7 @@ export const HeaderMenu = styled.div`
 
   a.active {
     box-shadow: 0 0 16px 4px rgba(247, 167, 7, 0.6);
+    border: ${(props) => props.theme['yellow-500']};
 
     span {
       display: none;

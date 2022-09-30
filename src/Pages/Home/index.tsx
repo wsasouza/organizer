@@ -1,9 +1,16 @@
-import { HomeContainer } from './styles'
+import illustration from '../../assets/illustration.svg'
+import { HomeContainer, Text } from './styles'
 
 export function Home() {
   return (
     <HomeContainer>
-      <h1>Page Home</h1>
+      <Text>
+        <h1>
+          Organize seus artigos, finanças e tarefas do dia a dia em um único
+          lugar
+        </h1>
+      </Text>
+      <img src={illustration} alt="" />
     </HomeContainer>
   )
 }
