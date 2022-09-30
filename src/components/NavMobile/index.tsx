@@ -19,7 +19,7 @@ export function NavMobile({ setOpen }: NavMobileProps) {
       </NavLink>
       <NavLink to="/money" title="Artigo" onClick={() => setOpen(false)}>
         <Money size={22} weight="duotone" />
-        <span>Financeiro</span>
+        <span>Finanças</span>
       </NavLink>
       <NavLink to="/tasks" title="Tarefa" onClick={() => setOpen(false)}>
         <NotePencil size={22} weight="duotone" />
