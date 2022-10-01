@@ -1,11 +1,13 @@
 import { Article, ChalkboardTeacher, Play, PlusCircle } from 'phosphor-react'
 import { SummaryCard } from '../../components/SummaryCard'
+import { ItemCard } from './components/ItemCard'
 import { SearchForm } from './components/SearchForm'
 import {
   AddButtonContainer,
   AddNewItemButton,
   BookmarksContainer,
   BookmarksHeader,
+  ItemCardContainer,
   SummaryCardContainer,
 } from './styles'
 
@@ -43,6 +45,29 @@ export function Bookmarks() {
         </SummaryCardContainer>
       </BookmarksHeader>
       <SearchForm />
+      <ItemCardContainer>
+        <ItemCard
+          title="Testando Cartão mockado"
+          link="https://www.google.com"
+          origin="Site"
+          type="curso"
+          createdAt="2022-10-01T03:24:47.302Z"
+        />
+        <ItemCard
+          title="Testando Cartão mockado"
+          link="https://www.google.com"
+          origin="Site"
+          type="artigo"
+          createdAt="2022-10-01T03:24:47.302Z"
+        />
+        <ItemCard
+          title="Testando Cartão mockado"
+          link="https://www.google.com"
+          origin="You Tube"
+          type="videoaula"
+          createdAt="2022-10-01T03:24:47.302Z"
+        />
+      </ItemCardContainer>
     </BookmarksContainer>
   )
 }

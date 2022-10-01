@@ -16,7 +16,6 @@ export function SearchForm() {
         </Query>
         <span>11 itens</span>
       </FilterContainer>
-
       <SearchFormAction>
         <input type="text" placeholder="Pesquisar itens..." />
         <button>

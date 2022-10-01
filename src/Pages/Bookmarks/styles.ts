@@ -58,3 +58,9 @@ export const SummaryCardContainer = styled.div`
   gap: 1rem;
   justify-content: space-between;
 `
+export const ItemCardContainer = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`
