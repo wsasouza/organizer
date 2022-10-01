@@ -79,7 +79,7 @@ export const HeaderMenu = styled.div`
     }
 
     svg {
-      transform: scale(1);
+      transform: scale(1.1);
     }
   }
 

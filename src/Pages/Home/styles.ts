@@ -6,7 +6,7 @@ export const HomeContainer = styled.main`
   margin: 10rem auto 0 auto;
   max-width: 72rem;
   padding: 6rem 3rem;
-  background: ${(props) => props.theme['gray-200']};
+  background: linear-gradient(180deg, #f1f1f1 0%, #f4e8d2 100%);
   border-radius: 6px;
   gap: 2rem;
 
