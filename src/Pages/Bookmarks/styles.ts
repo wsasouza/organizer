@@ -5,7 +5,6 @@ export const BookmarksContainer = styled.main`
   width: 100%;
   max-width: 72rem;
   padding: 0 1rem 2rem 1rem;
-  // height: 200vh;
   border-radius: 6px;
   background: linear-gradient(180deg, #f1f1f1 0%, #f4e8d2 100%);
 `
@@ -14,7 +13,6 @@ export const BookmarksHeader = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   margin: -7rem auto 1rem auto;
-  overflow-x: auto;
 `
 
 export const AddButtonContainer = styled.div`
@@ -27,6 +25,7 @@ export const AddNewItemButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  height: 2.5rem;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   border: none;
@@ -57,10 +56,11 @@ export const SummaryCardContainer = styled.div`
   align-items: center;
   gap: 1rem;
   justify-content: space-between;
+  overflow-x: auto;
 `
 export const ItemCardContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 `

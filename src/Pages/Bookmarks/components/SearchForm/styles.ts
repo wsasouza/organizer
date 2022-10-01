@@ -25,7 +25,9 @@ export const SearchFormAction = styled.div`
 
   input {
     flex: 1;
+    font-size: 1rem;
     border-radius: 6px;
+    height: 2.5rem;
     border: 0;
     padding: 0.5rem;
 
@@ -38,6 +40,7 @@ export const SearchFormAction = styled.div`
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    height: 2.5rem;
     padding: 0.25rem 0.5rem;
     background: linear-gradient(180deg, #f2cb81 0%, #f7a407 100%);
     border: none;

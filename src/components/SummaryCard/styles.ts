@@ -6,7 +6,8 @@ interface SummaryCardProps {
 
 export const SummaryCardContainer = styled.div<SummaryCardProps>`
   font-family: 'MuseoModerno', cursive;
-  width: 24rem;
+  width: 100%;
+  min-width: 19rem;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -26,6 +27,6 @@ export const SummaryCardContainer = styled.div<SummaryCardProps>`
 
   span {
     color: ${(props) => props.theme['gray-700']};
-    font-size: 0.9375rem;
+    font-size: 0.75rem;
   }
 `

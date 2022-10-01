@@ -8,11 +8,11 @@ export const ItemCardContainer = styled.div`
   grid-template-areas: 'title origin category date delete';
   padding: 1.125rem 1rem;
   border-radius: 6px;
-  background: ${(props) => props.theme['gray-200']};
-  border-left: 5px solid ${(props) => props.theme['gray-900']};
+  background: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
-  .description {
-    grid-area: description;
+  .title {
+    grid-area: title;
     display: flex;
     align-items: center;
   }
@@ -86,7 +86,7 @@ export const ItemCardContainer = styled.div`
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 1.5rem 1.5rem auto;
     grid-template-areas:
-      'description description description delete'
+      'title title title delete'
       'origin origin origin origin'
       'category category date date';
     padding: 1.5rem;

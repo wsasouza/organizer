@@ -57,7 +57,7 @@ export function ItemCard(data: ItemCardProps) {
       <span className="title">{title}</span>
 
       <a href={link} target="_blank" rel="noreferrer" className="origin">
-        <Link size={20} weight="duotone" />
+        <Link size={20} weight="duotone" color="#070500" />
         {origin}
       </a>
 
@@ -66,7 +66,7 @@ export function ItemCard(data: ItemCardProps) {
         <span>{article!.name}</span>
       </div>
       <div className="date">
-        <CalendarBlank size={16} color="#070500" weight="duotone" />
+        <CalendarBlank size={16} color="#F7A407" weight="bold" />
         {dateFormatter.format(new Date(createdAt))}
       </div>
 

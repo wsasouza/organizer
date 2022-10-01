@@ -10,6 +10,10 @@ export const HomeContainer = styled.main`
   border-radius: 6px;
   gap: 2rem;
 
+  img {
+    opacity: 0.8;
+  }
+
   @media (max-width: 940px) {
     display: flex;
     flex-direction: column-reverse;
@@ -27,7 +31,8 @@ export const Text = styled.div`
   h1 {
     font-family: 'MuseoModerno', cursive;
     font-size: 3rem;
-    color: ${(props) => props.theme['yellow-500']};
+    color: ${(props) => props.theme['gray-800']};
+    opacity: 0.8;
     letter-spacing: 2px;
     line-height: 1.3;
 
@@ -38,7 +43,7 @@ export const Text = styled.div`
       height: 2rem;
       margin-right: 8px;
       border-radius: 4px;
-      background: ${(props) => props.theme['gray-800']};
+      background: ${(props) => props.theme['yellow-500']};
     }
 
     &::after {
