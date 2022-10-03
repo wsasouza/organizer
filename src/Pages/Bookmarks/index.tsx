@@ -1,7 +1,12 @@
+import { useState } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 import { Article, ChalkboardTeacher, Play, PlusCircle } from 'phosphor-react'
+
 import { SummaryCard } from '../../components/SummaryCard'
+import { useBookmarksSummary } from '../../hooks/useBookmarksSummary'
 import { ItemCard } from './components/ItemCard'
 import { SearchForm } from './components/SearchForm'
+
 import {
   AddButtonContainer,
   AddNewItemButton,
@@ -10,63 +15,88 @@ import {
   ItemCardContainer,
   SummaryCardContainer,
 } from './styles'
+import { NewBookmarkModal } from './components/NewBookmarkModal'
+import { useContextSelector } from 'use-context-selector'
+import { BookmarksContext } from '../../contexts/BookmarksContexts'
 
 export function Bookmarks() {
+  const [open, setOpen] = useState(false)
+
+  const itemsCard = useContextSelector(BookmarksContext, (context) => {
+    return context.itemsFiltered
+  })
+
+  const deleteCard = useContextSelector(BookmarksContext, (context) => {
+    return context.deleteArticleItem
+  })
+
+  const {
+    summary,
+    lastDateItemArticle,
+    lastDateItemCourse,
+    lastDateItemVideo,
+  } = useBookmarksSummary()
+
+  const quantityItemsDisplay = (quantityItems: number) => {
+    if (quantityItems === 0) return 'Nenhum item'
+    else if (quantityItems === 1) {
+      return `${`${quantityItems}`.padStart(2, '0')} item`
+    } else return `${`${quantityItems}`.padStart(2, '0')} itens`
+  }
+
   return (
     <BookmarksContainer>
       <BookmarksHeader>
         <AddButtonContainer>
-          <AddNewItemButton>
-            <PlusCircle size={16} color="#070500" weight="duotone" />
-            Novo Item
-          </AddNewItemButton>
+          <Dialog.Root open={open} onOpenChange={setOpen}>
+            <Dialog.Trigger asChild>
+              <AddNewItemButton>
+                <PlusCircle size={16} color="#070500" weight="duotone" />
+                Novo Item
+              </AddNewItemButton>
+            </Dialog.Trigger>
+            <NewBookmarkModal setOpen={setOpen} />
+          </Dialog.Root>
         </AddButtonContainer>
         <SummaryCardContainer>
           <SummaryCard
             title="Artigo"
             icon={<Article size={32} color="#070500" weight="duotone" />}
-            content="04 Itens"
-            detail="Último artigo adicionado em 30/09/2022"
+            content={quantityItemsDisplay(summary.article)}
+            detail={lastDateItemArticle}
           />
           <SummaryCard
             title="Curso"
             icon={
               <ChalkboardTeacher size={32} color="#070500" weight="duotone" />
             }
-            content="04 Itens"
-            detail="Último curso adicionado em 30/09/2022"
+            content={quantityItemsDisplay(summary.course)}
+            detail={lastDateItemCourse}
           />
           <SummaryCard
             title="Vídeo Aula"
             icon={<Play size={32} color="#070500" weight="duotone" />}
-            content="04 Itens"
-            detail="Última vídeo aula adicionado em 30/09/2022"
+            content={quantityItemsDisplay(summary.video)}
+            detail={lastDateItemVideo}
           />
         </SummaryCardContainer>
       </BookmarksHeader>
       <SearchForm />
       <ItemCardContainer>
-        <ItemCard
-          title="Testando Cartão mockado"
-          link="https://www.google.com"
-          origin="Site"
-          type="curso"
-          createdAt="2022-10-01T03:24:47.302Z"
-        />
-        <ItemCard
-          title="Testando Cartão mockado"
-          link="https://www.google.com"
-          origin="Site"
-          type="artigo"
-          createdAt="2022-10-01T03:24:47.302Z"
-        />
-        <ItemCard
-          title="Testando Cartão mockado"
-          link="https://www.google.com"
-          origin="You Tube"
-          type="videoaula"
-          createdAt="2022-10-01T03:24:47.302Z"
-        />
+        {itemsCard.map((item) => {
+          return (
+            <ItemCard
+              key={item.id}
+              title={item.title}
+              origin={item.origin}
+              link={item.link}
+              type={item.type}
+              createdAt={item.createdAt}
+              id={item.id}
+              onDeleteCard={deleteCard}
+            />
+          )
+        })}
       </ItemCardContainer>
     </BookmarksContainer>
   )

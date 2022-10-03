@@ -1,6 +1,7 @@
 import { useContextSelector } from 'use-context-selector'
 
-// import { ItemsContext } from '../contexts/ItemsContexts'
+import { BookmarksContext } from '../contexts/BookmarksContexts'
+import { dateFormatter } from '../utils/formatter'
 
 interface Item {
   id: string
@@ -8,13 +9,13 @@ interface Item {
   origin: string
   link: string
   type: 'artigo' | 'curso' | 'videoaula'
-  createdAt: string
+  createdAt: Date
 }
 
 export function useBookmarksSummary() {
-  // const items = useContextSelector(ItemsContext, (context) => {
-  //   return context.items
-  // })
+  const items = useContextSelector(BookmarksContext, (context) => {
+    return context.items
+  })
 
   function getLastItemDate(
     collection: Item[],
@@ -27,7 +28,7 @@ export function useBookmarksSummary() {
     const lastItemDate = new Date(
       Math.max.apply(
         Math,
-        collectionFilttered.map((item) => new Date(item.createdAt).getTime()),
+        collectionFilttered.map((item) => item.createdAt.getTime()),
       ),
     )
 
@@ -35,10 +36,22 @@ export function useBookmarksSummary() {
   }
 
   const lastItemArticle = getLastItemDate(items, 'artigo')
+  const lastDateItemArticle =
+    lastItemArticle === 0
+      ? 'Nenhum artigo adicionado'
+      : `Último artigo adicionado em ${dateFormatter.format(lastItemArticle)}`
 
   const lastItemCourse = getLastItemDate(items, 'curso')
+  const lastDateItemCourse =
+    lastItemCourse === 0
+      ? 'Nenhum curso adicionado'
+      : `Último curso adicionado em ${dateFormatter.format(lastItemCourse)}`
 
   const lastItemVideo = getLastItemDate(items, 'videoaula')
+  const lastDateItemVideo =
+    lastItemVideo === 0
+      ? 'Nenhuma videoaula adicionada'
+      : `Última videoaula adicionada em ${dateFormatter.format(lastItemVideo)}`
 
   const summary = items.reduce(
     (acc, item) => {
@@ -56,8 +69,8 @@ export function useBookmarksSummary() {
 
   return {
     summary,
-    lastItemArticle,
-    lastItemCourse,
-    lastItemVideo,
+    lastDateItemArticle,
+    lastDateItemCourse,
+    lastDateItemVideo,
   }
 }

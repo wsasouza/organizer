@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const SearchFormContainer = styled.div`
+export const SearchFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -11,11 +11,24 @@ export const FilterContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+interface QueryProps {
+  variant?: string
+}
 
-export const Query = styled.div`
+export const Query = styled.div<QueryProps>`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+
+  ${(props) =>
+    props.variant &&
+    css`
+      span {
+        padding: 0.25rem 1rem;
+        border-radius: 6px;
+        background: ${(props) => props.theme['yellow-300']};
+      }
+    `}
 `
 
 export const SearchFormAction = styled.div`

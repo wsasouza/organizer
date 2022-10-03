@@ -27,11 +27,13 @@ import {
 } from './styles'
 
 interface ItemCardProps {
+  id: string
   title: string
   origin: string
   link: string
   type: 'artigo' | 'curso' | 'videoaula'
-  createdAt: string
+  createdAt: Date
+  onDeleteCard: (id: string) => void
 }
 
 export function ItemCard(data: ItemCardProps) {
@@ -67,7 +69,7 @@ export function ItemCard(data: ItemCardProps) {
       </div>
       <div className="date">
         <CalendarBlank size={16} color="#F7A407" weight="bold" />
-        {dateFormatter.format(new Date(createdAt))}
+        {dateFormatter.format(createdAt)}
       </div>
 
       <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -90,7 +92,9 @@ export function ItemCard(data: ItemCardProps) {
           </DialogDescription>
           <DialogAction>
             <CancelButton>Cancelar</CancelButton>
-            <DeleteButton>Confirmar</DeleteButton>
+            <DeleteButton onClick={() => data.onDeleteCard(data.id)}>
+              Confirmar
+            </DeleteButton>
           </DialogAction>
         </DialogContent>
       </Dialog.Root>

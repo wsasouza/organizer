@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
 import { createContext } from 'use-context-selector'
@@ -47,28 +47,31 @@ export function BookmarksProvider({ children }: ItemProviderProps) {
 
   const [quantityItems, setQuantityItems] = useState(0)
 
-  function fetchItemsFiltered(query?: string) {
-    if (query) {
-      const queryFormatted = query.toLowerCase()
+  const fetchItemsFiltered = useCallback(
+    (query?: string) => {
+      if (query) {
+        const queryFormatted = query.toLowerCase()
 
-      const result = items.filter(function (item) {
-        if (
-          item.title.toLowerCase().includes(queryFormatted) ||
-          item.origin.toLowerCase().includes(queryFormatted) ||
-          item.link.toLowerCase().includes(queryFormatted) ||
-          item.type.toLowerCase().includes(queryFormatted)
-        ) {
-          return item
-        } else return ''
-      })
+        const result = items.filter(function (item) {
+          if (
+            item.title.toLowerCase().includes(queryFormatted) ||
+            item.origin.toLowerCase().includes(queryFormatted) ||
+            item.link.toLowerCase().includes(queryFormatted) ||
+            item.type.toLowerCase().includes(queryFormatted)
+          ) {
+            return item
+          } else return ''
+        })
 
-      setItemsFiltered(result)
-      setQuantityItems(result.length)
-    } else {
-      setItemsFiltered(items)
-      setQuantityItems(items.length)
-    }
-  }
+        setItemsFiltered(result)
+        setQuantityItems(result.length)
+      } else {
+        setItemsFiltered(items)
+        setQuantityItems(items.length)
+      }
+    },
+    [items],
+  )
 
   function createArticleItem(data: CreateBookmarkInput) {
     const { title, origin, link, type } = data
@@ -99,7 +102,8 @@ export function BookmarksProvider({ children }: ItemProviderProps) {
 
   useEffect(() => {
     localStorage.setItem(ARTICLES_ITEMS, JSON.stringify(items))
-  }, [items])
+    fetchItemsFiltered()
+  }, [fetchItemsFiltered, items])
 
   return (
     <BookmarksContext.Provider
