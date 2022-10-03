@@ -28,9 +28,9 @@ export function Header({ scroll }: HeaderProps) {
           <img src={logo} alt="" width={200} />
         </Link>
         <HeaderMenu>
-          <NavLink to="/bookmarks" title="Artigos">
+          <NavLink to="/bookmarks" title="Favoritos">
             <Bookmarks size={22} weight="duotone" />
-            <span>Artigos</span>
+            <span>Favoritos</span>
           </NavLink>
           <NavLink to="/money" title="Finanças">
             <Money size={22} weight="duotone" />

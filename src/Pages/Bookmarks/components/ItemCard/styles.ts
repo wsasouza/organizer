@@ -123,7 +123,8 @@ export const DialogContent = styled(Dialog.Content)`
   width: 22rem;
   border-radius: 6px;
   padding: 1.5rem 3rem;
-  background: linear-gradient(90deg, #f4e8d2 0%, #f7a407 100%);
+  background: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   position: fixed;
   top: 50%;
   left: 50%;

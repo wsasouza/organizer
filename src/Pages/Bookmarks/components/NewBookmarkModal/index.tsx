@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Article, ChalkboardTeacher, Play, X } from 'phosphor-react'
+import { Article, ChalkboardTeacher, Play, PlusCircle, X } from 'phosphor-react'
 
 import { BookmarksContext } from '../../../../contexts/BookmarksContexts'
 
@@ -13,6 +13,7 @@ import {
   Overlay,
   ItemType,
   ItemTypeButton,
+  Title,
 } from './styles'
 
 const newBookmarkFormSchema = z.object({
@@ -61,7 +62,10 @@ export function NewBookmarkModal({ setOpen }: NewBookmarkModalProps) {
     <Dialog.Portal>
       <Overlay />
       <Content>
-        <Dialog.Title>Novo Item</Dialog.Title>
+        <Title>
+          <PlusCircle size={24} />
+          Novo Item
+        </Title>
         <CloseButton asChild onClick={() => reset()}>
           <X size={24} />
         </CloseButton>

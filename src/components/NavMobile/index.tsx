@@ -13,9 +13,9 @@ export function NavMobile({ setOpen }: NavMobileProps) {
         <House size={22} weight="duotone" />
         <span>Home</span>
       </NavLink>
-      <NavLink to="/bookmarks" title="Artigos" onClick={() => setOpen(false)}>
+      <NavLink to="/bookmarks" title="Favoritos" onClick={() => setOpen(false)}>
         <Bookmarks size={22} weight="duotone" />
-        <span>Artigos</span>
+        <span>Favoritos</span>
       </NavLink>
       <NavLink to="/money" title="Artigo" onClick={() => setOpen(false)}>
         <Money size={22} weight="duotone" />

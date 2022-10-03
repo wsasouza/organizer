@@ -15,7 +15,8 @@ export const Content = styled(Dialog.Content)`
   width: 35rem;
   border-radius: 6px;
   padding: 3rem;
-  background: linear-gradient(90deg, #f4e8d2 0%, #f7a407 100%);
+  background: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
   position: fixed;
   top: 50%;
@@ -35,7 +36,7 @@ export const Content = styled(Dialog.Content)`
       border: 0;
       background: ${(props) => props.theme['gray-100']};
       color: ${(props) => props.theme['gray-700']};
-      padding: 0.5rem;
+      padding: 0.75rem;
 
       &::placeholder {
         color: ${(props) => props.theme['gray-400']};
@@ -43,7 +44,7 @@ export const Content = styled(Dialog.Content)`
 
       &:focus {
         outline: 0;
-        box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-800']};
+        box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-500']};
       }
     }
 
@@ -51,8 +52,8 @@ export const Content = styled(Dialog.Content)`
       height: 3rem;
       border: 0;
       border-radius: 6px;
-      background: ${(props) => props.theme['green-300']};
-      color: ${(props) => props.theme['gray-300']};
+      background: linear-gradient(180deg, #f2cb81 0%, #f7a407 100%);
+      color: ${(props) => props.theme['gray-900']};
       font-weight: bold;
       padding: 0 1.25rem;
       margin-top: 1.5rem;
@@ -64,8 +65,7 @@ export const Content = styled(Dialog.Content)`
       }
 
       &:not(:disabled):hover {
-        background: ${(props) => props.theme['green-500']};
-        transition: background-color 0.5s;
+        background: linear-gradient(180deg, #f7a407 0%, #f2cb81 100%);
       }
     }
   }
@@ -79,6 +79,11 @@ export const Content = styled(Dialog.Content)`
       margin-top: 1rem;
     }
   }
+`
+export const Title = styled(Dialog.Title)`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `
 
 export const CloseButton = styled(Dialog.Close)`
@@ -116,24 +121,19 @@ export const ItemTypeButton = styled(Radio.Item)`
   gap: 0.5rem;
   border-radius: 6px;
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme['gray-800']};
-  color: ${(props) => props.theme['gray-800']};
+  border: 1px solid ${(props) => props.theme['gray-900']};
+  color: ${(props) => props.theme['gray-900']};
 
   svg {
-    color: ${(props) => props.theme['gray-800']};
+    color: ${(props) => props.theme['gray-900']};
   }
 
   &[data-state='unchecked']:hover {
     transition: background-color 0.5s;
-    background: ${(props) => props.theme['gray-700']};
+    background: ${(props) => props.theme['yellow-300']};
   }
 
   &[data-state='checked'] {
-    color: ${(props) => props.theme['gray-100']};
-    background: ${(props) => props.theme['gray-700']};
-
-    svg {
-      color: ${(props) => props.theme['gray-100']};
-    }
+    background: ${(props) => props.theme['yellow-500']};
   }
 `

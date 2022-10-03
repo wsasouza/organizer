@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const NavMobileContainer = styled.aside`
   width: 100%;
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   backdrop-filter: blur(13.5px);
   border: 1px solid 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 6px;
@@ -49,6 +49,7 @@ export const NavMobileContainer = styled.aside`
 
   a.active {
     box-shadow: 0 0 16px 4px rgba(247, 167, 7, 0.6);
+    background: ${(props) => props.theme['yellow-500']};
 
     span {
       display: none;
