@@ -47,6 +47,11 @@ export const SearchFormAction = styled.div`
     &::placeholder {
       color: ${(props) => props.theme['gray-500']};
     }
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-500']};
+    }
   }
 
   button {

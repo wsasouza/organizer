@@ -77,7 +77,7 @@ export const ItemCardContainer = styled.div`
 
   .delete:hover {
     svg {
-      color: ${(props) => props.theme['red-300']};
+      color: ${(props) => props.theme['red-500']};
       transition: color 0.5s;
     }
   }
