@@ -6,7 +6,7 @@ export function Home() {
     <HomeContainer>
       <Text>
         <h1>
-          Organize seus artigos, finanças e tarefas do dia a dia em um único
+          Organize seus favoritos, finanças e tarefas do dia a dia em um único
           lugar
         </h1>
       </Text>
