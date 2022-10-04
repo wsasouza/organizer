@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
 import { createContext } from 'use-context-selector'
+import { DropResult } from 'react-beautiful-dnd'
 
 import { initialValueBookmarks } from '../utils/initialValue'
 
@@ -28,6 +29,7 @@ interface BookmarksContextType {
   fetchItemsFiltered: (query?: string) => void
   createArticleItem: (data: CreateBookmarkInput) => void
   deleteArticleItem: (id: string) => void
+  onDragEnd: (result: DropResult) => void
 }
 
 interface ItemProviderProps {
@@ -73,6 +75,20 @@ export function BookmarksProvider({ children }: ItemProviderProps) {
     [items],
   )
 
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result
+
+    if (!destination) {
+      return
+    }
+
+    const items = Array.from(itemsFiltered)
+    const [newOrder] = items.splice(source.index, 1)
+    items.splice(destination.index, 0, newOrder)
+
+    setItemsFiltered(items)
+  }
+
   function createArticleItem(data: CreateBookmarkInput) {
     const { title, origin, link, type } = data
     const itemSameLink = items.find((item) => item.link === link)
@@ -114,6 +130,7 @@ export function BookmarksProvider({ children }: ItemProviderProps) {
         fetchItemsFiltered,
         createArticleItem,
         deleteArticleItem,
+        onDragEnd,
       }}
     >
       {children}

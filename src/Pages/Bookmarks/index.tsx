@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import {
   Article,
   BookmarksSimple,
@@ -37,12 +38,23 @@ export function Bookmarks() {
     return context.deleteArticleItem
   })
 
+  const onDragEnd = useContextSelector(BookmarksContext, (context) => {
+    return context.onDragEnd
+  })
+
   const {
     summary,
     lastDateItemArticle,
     lastDateItemCourse,
     lastDateItemVideo,
   } = useBookmarksSummary()
+
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    borderTop: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRight: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRadius: '6px',
+    ...draggableStyle,
+  })
 
   return (
     <BookmarksContainer>
@@ -86,22 +98,46 @@ export function Bookmarks() {
         </SummaryCardContainer>
       </BookmarksHeader>
       <SearchForm />
-      <ItemCardContainer>
-        {itemsCard.map((item) => {
-          return (
-            <ItemCard
-              key={item.id}
-              title={item.title}
-              origin={item.origin}
-              link={item.link}
-              type={item.type}
-              createdAt={item.createdAt}
-              id={item.id}
-              onDeleteCard={deleteCard}
-            />
-          )
-        })}
-      </ItemCardContainer>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="transactions">
+          {(provided) => (
+            <ItemCardContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {itemsCard.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style,
+                        )}
+                      >
+                        <ItemCard
+                          key={item.id}
+                          title={item.title}
+                          origin={item.origin}
+                          link={item.link}
+                          type={item.type}
+                          createdAt={item.createdAt}
+                          id={item.id}
+                          onDeleteCard={deleteCard}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </ItemCardContainer>
+          )}
+        </Droppable>
+      </DragDropContext>
     </BookmarksContainer>
   )
 }
