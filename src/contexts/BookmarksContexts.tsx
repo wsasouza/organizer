@@ -36,11 +36,11 @@ interface ItemProviderProps {
 
 export const BookmarksContext = createContext({} as BookmarksContextType)
 
-const ARTICLES_ITEMS = '@Organizer:bookmarks'
+const BOOKMARKS_ITEMS = '@Organizer:bookmarks'
 
 export function BookmarksProvider({ children }: ItemProviderProps) {
   const [items, setItems] = useState<Item[]>(
-    initialValueBookmarks(ARTICLES_ITEMS),
+    initialValueBookmarks(BOOKMARKS_ITEMS),
   )
 
   const [itemsFiltered, setItemsFiltered] = useState<Item[]>([])
@@ -101,7 +101,7 @@ export function BookmarksProvider({ children }: ItemProviderProps) {
   }
 
   useEffect(() => {
-    localStorage.setItem(ARTICLES_ITEMS, JSON.stringify(items))
+    localStorage.setItem(BOOKMARKS_ITEMS, JSON.stringify(items))
     fetchItemsFiltered()
   }, [fetchItemsFiltered, items])
 

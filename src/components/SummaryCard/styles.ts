@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 interface SummaryCardProps {
-  variant?: 'green' | 'red'
+  variant?: 'yellow' | 'green' | 'red'
 }
 
 export const SummaryCardContainer = styled.div<SummaryCardProps>`
@@ -29,4 +29,16 @@ export const SummaryCardContainer = styled.div<SummaryCardProps>`
     color: ${(props) => props.theme['gray-700']};
     font-size: 0.75rem;
   }
+
+  ${(props) =>
+    props.variant === 'green' &&
+    css`
+      background: linear-gradient(90deg, #f4e8d2 0%, #07a31c 100%);
+    `};
+
+  ${(props) =>
+    props.variant === 'red' &&
+    css`
+      background: linear-gradient(90deg, #f4e8d2 0%, #f75a68 100%);
+    `};
 `

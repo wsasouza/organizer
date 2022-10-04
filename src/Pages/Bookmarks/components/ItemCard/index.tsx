@@ -11,7 +11,7 @@ import {
   Eraser,
 } from 'phosphor-react'
 
-import { articleTypes } from '../../../../utils/articleTypes'
+import { bookmarksCategories } from '../../../../utils/categories'
 import { dateFormatter } from '../../../../utils/formatter'
 
 import {
@@ -41,7 +41,7 @@ export function ItemCard(data: ItemCardProps) {
 
   const { link, origin, title, createdAt } = data
 
-  const article = articleTypes.find((type) => type.key === data.type)
+  const bookmark = bookmarksCategories.find((type) => type.key === data.type)
 
   function iconFinder(icon: string) {
     if (icon === 'artigo')
@@ -64,8 +64,8 @@ export function ItemCard(data: ItemCardProps) {
       </a>
 
       <div className="category">
-        {iconFinder(article!.key)}
-        <span>{article!.name}</span>
+        {iconFinder(bookmark!.key)}
+        <span>{bookmark!.name}</span>
       </div>
       <div className="date">
         <CalendarBlank size={16} color="#F7A407" weight="bold" />

@@ -6,7 +6,7 @@ interface SummaryCardProps {
   icon: ReactNode
   content: string
   detail: string
-  variant?: 'green' | 'red'
+  variant?: 'yellow' | 'green' | 'red'
 }
 
 export function SummaryCard(data: SummaryCardProps) {

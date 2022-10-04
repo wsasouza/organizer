@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Funnel, MagnifyingGlass } from 'phosphor-react'
+
 import { BookmarksContext } from '../../../../contexts/BookmarksContexts'
+import { quantityItemsDisplay } from '../../../../utils/formatter'
+
 import {
   FilterContainer,
   Query,
@@ -38,13 +41,6 @@ export function SearchForm() {
   const quantityItems = useContextSelector(BookmarksContext, (context) => {
     return context.quantityItems
   })
-
-  const quantityItemsDisplay = (quantityItems: number) => {
-    if (quantityItems === 0) return 'Não há registros'
-    else if (quantityItems === 1) {
-      return `${`${quantityItems}`.padStart(2, '0')} item`
-    } else return `${`${quantityItems}`.padStart(2, '0')} itens`
-  }
 
   return (
     <SearchFormContainer onSubmit={handleSubmit(handleSearchItems)}>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Article, ChalkboardTeacher, Play, PlusCircle } from 'phosphor-react'
 
@@ -6,6 +7,9 @@ import { SummaryCard } from '../../components/SummaryCard'
 import { useBookmarksSummary } from '../../hooks/useBookmarksSummary'
 import { ItemCard } from './components/ItemCard'
 import { SearchForm } from './components/SearchForm'
+import { NewBookmarkModal } from './components/NewBookmarkModal'
+import { BookmarksContext } from '../../contexts/BookmarksContexts'
+import { quantityItemsDisplay } from '../../utils/formatter'
 
 import {
   AddButtonContainer,
@@ -15,9 +19,6 @@ import {
   ItemCardContainer,
   SummaryCardContainer,
 } from './styles'
-import { NewBookmarkModal } from './components/NewBookmarkModal'
-import { useContextSelector } from 'use-context-selector'
-import { BookmarksContext } from '../../contexts/BookmarksContexts'
 
 export function Bookmarks() {
   const [open, setOpen] = useState(false)
@@ -36,13 +37,6 @@ export function Bookmarks() {
     lastDateItemCourse,
     lastDateItemVideo,
   } = useBookmarksSummary()
-
-  const quantityItemsDisplay = (quantityItems: number) => {
-    if (quantityItems === 0) return 'Nenhum item'
-    else if (quantityItems === 1) {
-      return `${`${quantityItems}`.padStart(2, '0')} item`
-    } else return `${`${quantityItems}`.padStart(2, '0')} itens`
-  }
 
   return (
     <BookmarksContainer>
