@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
 import { createContext } from 'use-context-selector'
+import { DropResult } from 'react-beautiful-dnd'
 
 import { initialValueTasks } from '../utils/initialValue'
 
@@ -26,6 +27,7 @@ interface TasksContextType {
   createTask: (data: CreateTaskInput) => void
   toggleTaskDone: (id: string) => void
   deleteTask: (id: string) => void
+  onDragEnd: (result: DropResult) => void
 }
 
 interface TasksProviderProps {
@@ -66,6 +68,20 @@ export function TasksProvider({ children }: TasksProviderProps) {
     },
     [tasks],
   )
+
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result
+
+    if (!destination) {
+      return
+    }
+
+    const tasks = Array.from(tasksFiltered)
+    const [newOrder] = tasks.splice(source.index, 1)
+    tasks.splice(destination.index, 0, newOrder)
+
+    setTasksFiltered(tasks)
+  }
 
   function createTask(data: CreateTaskInput) {
     const taskWithSameTitle = tasks.find((task) => task.title === data.title)
@@ -126,6 +142,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         createTask,
         toggleTaskDone,
         deleteTask,
+        onDragEnd,
       }}
     >
       {children}

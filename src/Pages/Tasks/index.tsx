@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import {
   Calendar,
   CalendarBlank,
@@ -10,6 +11,12 @@ import {
 } from 'phosphor-react'
 
 import { SummaryCard } from '../../components/SummaryCard'
+import { useTasksSummary } from '../../hooks/useTasksSummary'
+import { NewTaskModal } from './components/NewTaskModal'
+import { TasksContext } from '../../contexts/TasksContexts'
+import { SearchForm } from './components/SearchForm'
+import { quantityTasksDisplay } from '../../utils/formatter'
+import { ItemCard } from './components/ItemCard'
 
 import {
   TasksContainer,
@@ -19,12 +26,6 @@ import {
   SummaryCardContainer,
   ItemCardContainer,
 } from './styles'
-import { NewTaskModal } from './components/NewTaskModal'
-import { useTasksSummary } from '../../hooks/useTasksSummary'
-import { quantityTasksDisplay } from '../../utils/formatter'
-import { SearchForm } from './components/SearchForm'
-import { TasksContext } from '../../contexts/TasksContexts'
-import { ItemCard } from './components/ItemCard'
 
 export function Tasks() {
   const [open, setOpen] = useState(false)
@@ -41,6 +42,10 @@ export function Tasks() {
     return context.toggleTaskDone
   })
 
+  const onDragEnd = useContextSelector(TasksContext, (context) => {
+    return context.onDragEnd
+  })
+
   const {
     lastDateTaskCreated,
     lastDateTaskDone,
@@ -49,6 +54,12 @@ export function Tasks() {
     todo,
     variant,
   } = useTasksSummary()
+
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    borderTop: isDragging ? '1px solid #d9d9d9' : 'none',
+    borderRadius: '8px',
+    ...draggableStyle,
+  })
 
   return (
     <TasksContainer>
@@ -91,22 +102,46 @@ export function Tasks() {
         </SummaryCardContainer>
       </TasksHeader>
       <SearchForm />
-      <ItemCardContainer>
-        {itemsCard.map((item) => {
-          return (
-            <ItemCard
-              key={item.id}
-              title={item.title}
-              category={item.category}
-              createdAt={item.createdAt}
-              done={item.done}
-              id={item.id}
-              onDeleteTask={deleteTask}
-              onToggleTask={taskDone}
-            />
-          )
-        })}
-      </ItemCardContainer>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="todo">
+          {(provided) => (
+            <ItemCardContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {itemsCard.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style,
+                        )}
+                      >
+                        <ItemCard
+                          key={item.id}
+                          title={item.title}
+                          category={item.category}
+                          createdAt={item.createdAt}
+                          done={item.done}
+                          id={item.id}
+                          onDeleteTask={deleteTask}
+                          onToggleTask={taskDone}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </ItemCardContainer>
+          )}
+        </Droppable>
+      </DragDropContext>
     </TasksContainer>
   )
 }
