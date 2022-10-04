@@ -2,19 +2,19 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --toastify-color-light: #29292E;
-    --toastify-color-dark: #29292E;
-    --toastify-color-info: linear-gradient(90deg, #39B74A 0%, #113817 100%);
-    --toastify-color-error: linear-gradient(90deg, #319E40 0%, #113817 100%);
-    --toastify-color-warning: linear-gradient(90deg, #319E40 0%, #113817 100%);
-    --toastify-color-success: linear-gradient(90deg, #319E40 0%, #113817 100%);
-    --toastify-icon-color-info: #C4C4CC;
-    --toastify-icon-color-error: #AB222E;
-    --toastify-icon-color-warning: #c47f17;
+    --toastify-color-light: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+    --toastify-color-dark: linear-gradient(90deg, #f1f1f1 0%, #f4e8d2 100%);
+    --toastify-color-info: linear-gradient(90deg, #f7a407 0%, #f2cb81 100%);
+    --toastify-color-error: linear-gradient(90deg, #f7a407 0%, #f2cb81 100%);
+    --toastify-color-warning: linear-gradient(90deg, #f7a407 0%, #f2cb81 100%);
+    --toastify-color-success: linear-gradient(90deg, #f7a407 0%, #f2cb81 100%);
+    --toastify-icon-color-info: #7DBEF2;
+    --toastify-icon-color-error: #F75A68;
+    --toastify-icon-color-warning: #f7a407;
     --toastify-icon-color-success: #319E40;  
   
-    --toastify-text-color-light: #C4C4CC;
-    --toastify-text-color-dark: #C4C4CC;
+    --toastify-text-color-light: #070500;
+    --toastify-text-color-dark: #070500;
   }
 
   *,
@@ -46,6 +46,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .Toastify__close-button {
-    color: ${(props) => props.theme['gray-300']};
+    color: ${(props) => props.theme['gray-900']};
   }
 `
