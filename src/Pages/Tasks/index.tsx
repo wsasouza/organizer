@@ -99,6 +99,7 @@ export function Tasks() {
               title={item.title}
               category={item.category}
               createdAt={item.createdAt}
+              done={item.done}
               id={item.id}
               onDeleteTask={deleteTask}
               onToggleTask={taskDone}

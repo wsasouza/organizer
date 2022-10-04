@@ -15,6 +15,12 @@ export const ItemCardContainer = styled.div`
     grid-area: title;
     display: flex;
     align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+
+    svg {
+      min-width: 1.5rem;
+    }
   }
 
   .category {
@@ -51,12 +57,18 @@ export const ItemCardContainer = styled.div`
     }
   }
   @media (max-width: 900px) {
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 1.5rem auto;
+    grid-template-columns: 25% 25% 40% 10%;
+    grid-template-rows: 1.5rem 1.5rem auto;
     grid-template-areas:
       'title title  title delete'
+      'title title  title  - '
       'category category date date';
     padding: 1.5rem;
+
+    .title {
+      align-items: flex-start;
+    }
+
     .delete {
       text-align: right;
     }

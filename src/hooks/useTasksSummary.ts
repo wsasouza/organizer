@@ -15,8 +15,6 @@ export function useTasksSummary() {
     return context.tasks
   })
 
-  console.log(tasks)
-
   function getLastItemDate(collection: Task[], hasDone: boolean) {
     const collectionFiltered = collection.filter(
       (task) => task.done === hasDone,
@@ -87,7 +85,7 @@ export function useTasksSummary() {
     { created: 0, done: 0 },
   )
 
-  const todo = resume.created - resume.done
+  const todo = resume.created
 
   function setVariant(todo: number): 'yellow' | 'green' | 'red' {
     if (todo === 0) return 'green'

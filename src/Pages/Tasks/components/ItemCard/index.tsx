@@ -11,6 +11,8 @@ import {
   PersonSimpleRun,
   BookOpen,
   TerminalWindow,
+  CheckCircle,
+  Circle,
 } from 'phosphor-react'
 
 import { tasksCategories } from '../../../../utils/categories'
@@ -32,6 +34,7 @@ interface TaskCardProps {
   id: string
   title: string
   category: string
+  done: boolean
   createdAt: Date
   onDeleteTask: (id: string) => void
   onToggleTask: (id: string) => void
@@ -68,7 +71,14 @@ export function ItemCard(data: TaskCardProps) {
 
   return (
     <ItemCardContainer>
-      <span className="title">{title}</span>
+      <span className="title" onClick={() => data.onToggleTask(data.id)}>
+        {data.done ? (
+          <CheckCircle size={24} color="#F7A407" weight="fill" />
+        ) : (
+          <Circle size={24} weight="duotone" />
+        )}
+        {title}
+      </span>
 
       <div className="category">
         {iconFinder(categoryTask!.key)}
