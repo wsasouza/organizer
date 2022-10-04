@@ -2,6 +2,8 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
 import { createContext } from 'use-context-selector'
+import { DropResult } from 'react-beautiful-dnd'
+
 import { initialValueMoney } from '../utils/initialValue'
 
 export interface Transaction {
@@ -27,6 +29,7 @@ interface TransactionContextType {
   fetchTransactionsFiltered: (query?: string) => void
   createTransaction: (data: CreateTransactionInput) => void
   deleteTransaction: (id: string) => void
+  onDragEnd: (result: DropResult) => void
 }
 
 interface TransactionProviderProps {
@@ -73,6 +76,20 @@ export function TransactionsProvider({ children }: TransactionProviderProps) {
     [transactions],
   )
 
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result
+
+    if (!destination) {
+      return
+    }
+
+    const transactions = Array.from(transactionsFiltered)
+    const [newOrder] = transactions.splice(source.index, 1)
+    transactions.splice(destination.index, 0, newOrder)
+
+    setTransactionsFiltered(transactions)
+  }
+
   function createTransaction(data: CreateTransactionInput) {
     const { description, category, type, value } = data
 
@@ -110,6 +127,7 @@ export function TransactionsProvider({ children }: TransactionProviderProps) {
         fetchTransactionsFiltered,
         createTransaction,
         deleteTransaction,
+        onDragEnd,
       }}
     >
       {children}

@@ -56,8 +56,9 @@ export function Tasks() {
   } = useTasksSummary()
 
   const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-    borderTop: isDragging ? '1px solid #d9d9d9' : 'none',
-    borderRadius: '8px',
+    borderTop: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRight: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRadius: '6px',
     ...draggableStyle,
   })
 

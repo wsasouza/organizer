@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import {
   ArrowCircleDown,
   ArrowCircleUp,
@@ -37,6 +38,10 @@ export function Money() {
     return context.deleteTransaction
   })
 
+  const onDragEnd = useContextSelector(TransactionsContext, (context) => {
+    return context.onDragEnd
+  })
+
   const {
     lastDateEntries,
     lastDateExpenses,
@@ -44,6 +49,13 @@ export function Money() {
     transactionsInterval,
     variant,
   } = useMoneySummary()
+
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    borderTop: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRight: isDragging ? '3px solid #F7A407 ' : 'none',
+    borderRadius: '6px',
+    ...draggableStyle,
+  })
 
   return (
     <MoneyContainer>
@@ -94,22 +106,46 @@ export function Money() {
         </SummaryCardContainer>
       </MoneyHeader>
       <SearchForm />
-      <ItemCardContainer>
-        {itemsCard.map((item) => {
-          return (
-            <ItemCard
-              key={item.id}
-              description={item.description}
-              value={item.value}
-              category={item.category}
-              type={item.type}
-              createdAt={item.createdAt}
-              id={item.id}
-              onDeleteCard={deleteCard}
-            />
-          )
-        })}
-      </ItemCardContainer>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="transactions">
+          {(provided) => (
+            <ItemCardContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {itemsCard.map((item, index) => {
+                return (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style,
+                        )}
+                      >
+                        <ItemCard
+                          key={item.id}
+                          description={item.description}
+                          value={item.value}
+                          category={item.category}
+                          type={item.type}
+                          createdAt={item.createdAt}
+                          id={item.id}
+                          onDeleteCard={deleteCard}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
+            </ItemCardContainer>
+          )}
+        </Droppable>
+      </DragDropContext>
     </MoneyContainer>
   )
 }
