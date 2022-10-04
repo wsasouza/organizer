@@ -81,4 +81,13 @@ export const SearchFormAction = styled.div`
       }
     }
   }
+
+  @media (max-width: 400px) {
+    button {
+      padding: 0.25rem 0.875rem;
+      span {
+        display: none;
+      }
+    }
+  }
 `
