@@ -60,4 +60,10 @@ export const Text = styled.div`
       font-size: 2.6rem;
     }
   }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
 `

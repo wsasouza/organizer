@@ -17,7 +17,7 @@ export const BookmarksHeader = styled.div`
 
 export const AddButtonContainer = styled.div`
   display: flex;
-  width: 100%;
+  align-items: center;
   justify-content: space-between;
 
   h1 {
@@ -25,6 +25,12 @@ export const AddButtonContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.25rem;
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 `
 
