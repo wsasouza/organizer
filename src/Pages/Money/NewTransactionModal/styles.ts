@@ -107,13 +107,11 @@ export const TransactionType = styled(Radio.Root)`
   gap: 1rem;
   margin-top: 0.5rem;
 `
-interface TransactionTypeButtonProps {
+interface TypeButtonProps {
   variant: 'income' | 'outcome'
 }
 
-export const TransactionTypeButton = styled(
-  Radio.Item,
-)<TransactionTypeButtonProps>`
+export const TransactionTypeButton = styled(Radio.Item)<TypeButtonProps>`
   background: ${(props) => props.theme['gray-200']};
   padding: 0.5rem;
   display: flex;

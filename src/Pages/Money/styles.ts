@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const MoneyContainer = styled.main`
-  margin: 17rem auto 0 auto;
+  margin: 17rem auto 3rem auto;
   width: 100%;
   max-width: 72rem;
   padding: 0 1rem 2rem 1rem;

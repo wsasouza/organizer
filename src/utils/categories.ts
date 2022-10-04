@@ -5,12 +5,12 @@ export const bookmarksCategories = [
 ]
 
 export const moneyCategories = [
-  { key: 'supermarket', name: 'Supermercado', icon: 'shopping-cart' },
-  { key: 'car', name: 'Carro', icon: 'car' },
-  { key: 'house', name: 'Casa', icon: 'house' },
-  { key: 'purchases', name: 'Compras', icon: 'handbag' },
-  { key: 'studies', name: 'Estudo', icon: 'graduation-cap' },
-  { key: 'food', name: 'Alimentação', icon: 'coffee' },
-  { key: 'leisure', name: 'Lazer', icon: 'game-controller' },
-  { key: 'salary', name: 'Rendimentos', icon: 'coins' },
+  { key: 'supermercado', name: 'Supermercado', icon: 'shopping-cart' },
+  { key: 'carro', name: 'Carro', icon: 'car' },
+  { key: 'casa', name: 'Casa', icon: 'house' },
+  { key: 'compras', name: 'Compras', icon: 'handbag' },
+  { key: 'estudo', name: 'Estudo', icon: 'graduation-cap' },
+  { key: 'lanche', name: 'Lanche', icon: 'coffee' },
+  { key: 'lazer', name: 'Lazer', icon: 'game-controller' },
+  { key: 'rendimentos', name: 'Rendimentos', icon: 'coins' },
 ]

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
 import {
   ArrowCircleDown,
@@ -11,6 +12,9 @@ import { NewTransactionModal } from './NewTransactionModal'
 import { SearchForm } from './SearchForm'
 import { SummaryCard } from '../../components/SummaryCard'
 import { useMoneySummary } from '../../hooks/useMoneySummary'
+import { priceFormatter } from '../../utils/formatter'
+import { TransactionsContext } from '../../contexts/TransactionsContexts'
+import { ItemCard } from './ItemCard'
 
 import {
   AddButtonContainer,
@@ -20,10 +24,17 @@ import {
   MoneyHeader,
   SummaryCardContainer,
 } from './styles'
-import { priceFormatter } from '../../utils/formatter'
 
 export function Money() {
   const [open, setOpen] = useState(false)
+
+  const itemsCard = useContextSelector(TransactionsContext, (context) => {
+    return context.transactionsFiltered
+  })
+
+  const deleteCard = useContextSelector(TransactionsContext, (context) => {
+    return context.deleteTransaction
+  })
 
   const {
     lastDateEntries,
@@ -79,16 +90,20 @@ export function Money() {
       </MoneyHeader>
       <SearchForm />
       <ItemCardContainer>
-        {/* <ItemCard
-              // key={item.id}
-              description="Salário"
-              category="carro"
-              type="outcome"
-              value={450}
-              createdAt="2022-10-03T16:48:34.983Z"
-              // id={item.id}
-              // onDeleteCard={deleteCard}
-            /> */}
+        {itemsCard.map((item) => {
+          return (
+            <ItemCard
+              key={item.id}
+              description={item.description}
+              value={item.value}
+              category={item.category}
+              type={item.type}
+              createdAt={item.createdAt}
+              id={item.id}
+              onDeleteCard={deleteCard}
+            />
+          )
+        })}
       </ItemCardContainer>
     </MoneyContainer>
   )
