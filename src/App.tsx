@@ -7,6 +7,7 @@ import { BookmarksProvider } from './contexts/BookmarksContexts'
 import { TransactionsProvider } from './contexts/TransactionsContexts'
 
 import { defaultTheme } from './styles/themes/default'
+import { TasksProvider } from './contexts/TasksContexts'
 
 export function App() {
   return (
@@ -14,7 +15,9 @@ export function App() {
       <ThemeProvider theme={defaultTheme}>
         <BookmarksProvider>
           <TransactionsProvider>
-            <Router />
+            <TasksProvider>
+              <Router />
+            </TasksProvider>
           </TransactionsProvider>
         </BookmarksProvider>
         <GlobalStyle />

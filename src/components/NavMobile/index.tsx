@@ -1,4 +1,4 @@
-import { House, Bookmarks, Money, NotePencil } from 'phosphor-react'
+import { House, Money, NotePencil, BookmarksSimple } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import { NavMobileContainer } from './styles'
 
@@ -14,7 +14,7 @@ export function NavMobile({ setOpen }: NavMobileProps) {
         <span>Home</span>
       </NavLink>
       <NavLink to="/bookmarks" title="Favoritos" onClick={() => setOpen(false)}>
-        <Bookmarks size={22} weight="duotone" />
+        <BookmarksSimple size={22} weight="duotone" />
         <span>Favoritos</span>
       </NavLink>
       <NavLink to="/money" title="Artigo" onClick={() => setOpen(false)}>

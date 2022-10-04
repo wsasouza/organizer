@@ -6,9 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { ArrowCircleDown, ArrowCircleUp, PlusCircle, X } from 'phosphor-react'
 
-import { TransactionsContext } from '../../../contexts/TransactionsContexts'
-import { normalizeValueCurrency, unMaskValue } from '../../../utils/masks'
-import { moneyCategories } from '../../../utils/categories'
+import { TransactionsContext } from '../../../../contexts/TransactionsContexts'
+import { normalizeValueCurrency, unMaskValue } from '../../../../utils/masks'
+import { moneyCategories } from '../../../../utils/categories'
 
 import {
   CloseButton,
@@ -22,7 +22,7 @@ import {
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
-  category: z.string(),
+  category: z.string().min(3),
   value: z.string(),
   type: z.enum(['income', 'outcome']),
 })

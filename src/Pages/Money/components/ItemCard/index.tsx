@@ -15,8 +15,8 @@ import {
   ShoppingCart,
 } from 'phosphor-react'
 
-import { moneyCategories } from '../../../utils/categories'
-import { dateFormatter, priceFormatter } from '../../../utils/formatter'
+import { moneyCategories } from '../../../../utils/categories'
+import { dateFormatter, priceFormatter } from '../../../../utils/formatter'
 
 import {
   CancelButton,

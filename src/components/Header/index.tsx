@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import autoAnimate from '@formkit/auto-animate'
-import { Bookmarks, Money, NotePencil, List, X } from 'phosphor-react'
+import { Money, NotePencil, List, X, BookmarksSimple } from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
 import { NavMobile } from '../NavMobile'
@@ -29,7 +29,7 @@ export function Header({ scroll }: HeaderProps) {
         </Link>
         <HeaderMenu>
           <NavLink to="/bookmarks" title="Favoritos">
-            <Bookmarks size={22} weight="duotone" />
+            <BookmarksSimple size={22} weight="duotone" />
             <span>Favoritos</span>
           </NavLink>
           <NavLink to="/money" title="Finanças">

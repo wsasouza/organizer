@@ -19,7 +19,14 @@ export const MoneyHeader = styled.div`
 export const AddButtonContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
+
+  h1 {
+    font-family: 'MuseoModerno', cursive;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 `
 
 export const AddNewTransactionButton = styled.button`

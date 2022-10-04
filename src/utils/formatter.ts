@@ -11,3 +11,10 @@ export const quantityItemsDisplay = (quantityItems: number) => {
     return `${`${quantityItems}`.padStart(2, '0')} item`
   } else return `${`${quantityItems}`.padStart(2, '0')} itens`
 }
+
+export const quantityTasksDisplay = (quantityTasks: number) => {
+  if (quantityTasks === 0) return 'Nenhuma tarefa'
+  else if (quantityTasks === 1) {
+    return `${`${quantityTasks}`.padStart(2, '0')} tarefa`
+  } else return `${`${quantityTasks}`.padStart(2, '0')} tarefas`
+}

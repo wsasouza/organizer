@@ -1,7 +1,13 @@
 import { useState } from 'react'
 import { useContextSelector } from 'use-context-selector'
 import * as Dialog from '@radix-ui/react-dialog'
-import { Article, ChalkboardTeacher, Play, PlusCircle } from 'phosphor-react'
+import {
+  Article,
+  BookmarksSimple,
+  ChalkboardTeacher,
+  Play,
+  PlusCircle,
+} from 'phosphor-react'
 
 import { SummaryCard } from '../../components/SummaryCard'
 import { useBookmarksSummary } from '../../hooks/useBookmarksSummary'
@@ -42,6 +48,10 @@ export function Bookmarks() {
     <BookmarksContainer>
       <BookmarksHeader>
         <AddButtonContainer>
+          <h1>
+            <BookmarksSimple size={32} weight="duotone" />
+            Favoritos
+          </h1>
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <AddNewItemButton>

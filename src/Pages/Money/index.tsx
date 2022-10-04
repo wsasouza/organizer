@@ -5,16 +5,17 @@ import {
   ArrowCircleDown,
   ArrowCircleUp,
   CurrencyCircleDollar,
+  Money as Currency,
   PlusCircle,
 } from 'phosphor-react'
 
-import { NewTransactionModal } from './NewTransactionModal'
-import { SearchForm } from './SearchForm'
+import { NewTransactionModal } from './components/NewTransactionModal'
+import { SearchForm } from './components/SearchForm'
 import { SummaryCard } from '../../components/SummaryCard'
 import { useMoneySummary } from '../../hooks/useMoneySummary'
 import { priceFormatter } from '../../utils/formatter'
 import { TransactionsContext } from '../../contexts/TransactionsContexts'
-import { ItemCard } from './ItemCard'
+import { ItemCard } from './components/ItemCard'
 
 import {
   AddButtonContainer,
@@ -48,6 +49,10 @@ export function Money() {
     <MoneyContainer>
       <MoneyHeader>
         <AddButtonContainer>
+          <h1>
+            <Currency size={32} weight="duotone" />
+            Finanças
+          </h1>
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
               <AddNewTransactionButton>
