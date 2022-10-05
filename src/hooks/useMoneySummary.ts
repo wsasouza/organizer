@@ -67,7 +67,7 @@ export function useMoneySummary() {
 
     return `De ${dateFormatter.format(
       firstTransactionInterval,
-    )} a ${dateFormatter.format(lastTransactionInterval)}`
+    )} à ${dateFormatter.format(lastTransactionInterval)}`
   }
 
   const lastTransactionEntries = getLastTransactionDate(transactions, 'income')

@@ -53,7 +53,7 @@ export function useTasksSummary() {
 
     return `De ${dateFormatter.format(
       firstTaskInterval,
-    )} a ${dateFormatter.format(lastTaskInterval)}`
+    )} à ${dateFormatter.format(lastTaskInterval)}`
   }
 
   const unDone = false
